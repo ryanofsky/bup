@@ -457,13 +457,13 @@ if opt.tree:
     print tree.encode('hex')
 if opt.commit or opt.name:
     if opt.message:
-        msg = opt.message
+        msg = opt.message + '\n'
     elif opt.file:
         with open(opt.file) as fd:
             msg = fd.read()
     else:
         msg = 'bup save'
-    msg += '\n\ncommand: %r' % sys.argv
+    msg += '\ncommand: %r' % sys.argv
     userline = '%s <%s@%s>' % (userfullname(), username(), hostname())
     commit = w.new_commit(tree, oldref, userline, date, None,
                           userline, date, None, msg)
